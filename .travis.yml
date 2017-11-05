@@ -8,3 +8,13 @@ after_success:
 - if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
   docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"; docker push therickys93/wikiproxy;
   fi
+- sh set_tags.sh
+deploy:
+  provider: releases
+  file_glob: "true"
+  skip_cleanup: true
+  api_key:
+    secure: kW1MV628tlWNqqClJGMIpH8jLDaSc26SH3DYVSrk/p853aZ+dNXEbHgxbbzPQoIezrx3MxrJ9oin+QCkIHC6YBmKuSkMkHncegU9cC1z0+/Fw8MLDHxTqRB3+qwYhqb9JAPkl6ZDxUVOkTvKY7RABbKw/Wd/iCmT/Q2ko156sYNZTPRQzSd/aKu4zRc4UhFI6hgfjU5U4NHju4DWCMQmicFb6qLgPzdkrZyid9mv7X0FzrL0ki1B+93MNWW4gf0vdOIVdcyfWXcjiMUGFyHznj9iXjZBkyZGTtL+i3BcM2nEkK0z93/Cr7R82yz1VEeSwvWwA4fhtXXImAiqRx82IQDhC+qKOtmms4d30u9qBt2tt28dASl/WD1DSGquHDSO4wBIErmvThvHB0wP6WvyAgj37LlSwq+7Obi80DIc89EaGpZO0pShSr70LlGjJgnDT5oaYrfyb/0c5+fdOsD4D5Gl8rypMTT8IYSLj4yoM+tq7fMvsqBYKvuh+jAcpc5IC/c5FZu6oVjjp3SW3ELKW3nHWCqEcTIePoCuhTiIVbnWhh/hXVZvQiwxZbf2M5KLDlHdIKrpIjmuxFMzf8A4qijzp/sFfd6ttQMJDfxzbBXkONvqPDr5YgSeYgauumD5+aFVAyiXa/+zg8iXdiDjcv3m5hSXskBHpzyMybixYOY=
+  on:
+    branch: masters
+    repo: therickys93/wikiproxy
